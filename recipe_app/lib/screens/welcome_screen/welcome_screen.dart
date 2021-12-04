@@ -10,7 +10,7 @@ class WelcomeScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: primaryLightColor,
+        backgroundColor: bgColor,
         body: Container(
           height: size.height,
           width: double.infinity,

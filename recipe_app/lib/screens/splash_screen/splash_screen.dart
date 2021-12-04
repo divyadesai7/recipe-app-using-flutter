@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:recipe_app/constants.dart';
 import 'package:recipe_app/screens/welcome_screen/welcome_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -23,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        color: Color.fromRGBO(197, 211, 230, 1),
+        color: bgColor,
         child: Image.asset("lib/assets/icons/cooking.png"),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app/constants.dart';
 
 class RoundedButton extends StatelessWidget {
   final String buttonLabel;
@@ -19,13 +20,13 @@ class RoundedButton extends StatelessWidget {
             onPressed: onPressed,
             child: Text(
               buttonLabel,
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: primaryLightColor),
             ),
             style: ElevatedButton.styleFrom(
-              primary: Colors.deepPurple,
+              primary: primaryColor,
               padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
               textStyle: TextStyle(
-                color: Colors.white,
+                color: primaryLightColor,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
               ),

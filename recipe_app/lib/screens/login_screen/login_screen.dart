@@ -10,7 +10,7 @@ class LoginScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color.fromRGBO(197, 211, 230, 1),
+        backgroundColor: bgColor,
         body: Container(
           height: size.height,
           width: double.infinity,
