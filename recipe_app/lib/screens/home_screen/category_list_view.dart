@@ -17,8 +17,8 @@ class CategoryListView extends StatelessWidget {
     return Container(
       height: size.height * 0.25,
       width: double.infinity,
-      color: Colors.pink,
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      // color: Colors.pink,
+      // padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: categories.length,

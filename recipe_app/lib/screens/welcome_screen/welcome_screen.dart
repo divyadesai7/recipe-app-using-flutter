@@ -13,7 +13,7 @@ class WelcomeScreen extends StatelessWidget {
         backgroundColor: bgColor,
         body: Container(
           height: size.height,
-          width: double.infinity,
+          width: size.width,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -23,7 +23,7 @@ class WelcomeScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               Image.asset(
-                "lib/assets/images/indian-housewife-working-like-super-woman.png",
+                "lib/assets/icons/welcome.png",
                 height: size.height * 0.45,
               ),
               RoundedButton(
@@ -33,7 +33,10 @@ class WelcomeScreen extends StatelessWidget {
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => LoginScreen()));
                 },
+                backgroundColor: primaryColor,
+                labelColor: primaryLightColor,
               ),
+              // Text()
               SizedBox(height: size.height * 0.1),
             ],
           ),

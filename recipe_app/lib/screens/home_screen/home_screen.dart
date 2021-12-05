@@ -22,8 +22,8 @@ class HomeScreen extends StatelessWidget {
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           backgroundColor: primaryColor,
-          selectedItemColor: primaryLightColor,
-          unselectedItemColor: bgColor,
+          selectedItemColor: primaryDarkColor,
+          unselectedItemColor: primaryLightColor,
           items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),

@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return SafeArea(
       child: Container(
         color: bgColor,
-        child: Image.asset("lib/assets/icons/cooking.png"),
+        child: Image.asset("lib/assets/icons/logo.png"),
       ),
     );
   }

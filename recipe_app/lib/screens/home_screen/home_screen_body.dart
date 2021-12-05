@@ -8,33 +8,35 @@ class HomeScreenBody extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return Container(
-      height: size.height,
-      width: double.infinity,
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          // crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              "Categories",
-              style: TextStyle(
-                fontSize: 24,
-                color: primaryDarkColor,
-              ),
+    return Column(
+      // mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          margin: EdgeInsets.fromLTRB(20, 10, 0, 0),
+          child: Text(
+            "Categories",
+            style: TextStyle(
+              fontSize: 24,
+              color: primaryDarkColor,
             ),
-            CategoryListView(),
-            Text(
-              "Recipes",
-              style: TextStyle(
-                fontSize: 24,
-                color: primaryDarkColor,
-              ),
-            ),
-            RecipeListView(),
-          ],
+          ),
         ),
-      ),
+        CategoryListView(),
+        Divider(color: primaryDarkColor, thickness: 1.0),
+        Container(
+          margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
+          child: Text(
+            "Recipes",
+            style: TextStyle(
+              fontSize: 24,
+              color: primaryDarkColor,
+            ),
+          ),
+        ),
+        RecipeListView(),
+      ],
     );
   }
 }

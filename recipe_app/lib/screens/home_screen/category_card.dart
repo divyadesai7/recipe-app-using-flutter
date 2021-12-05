@@ -19,14 +19,14 @@ class CategoryCard extends StatelessWidget {
           Container(
             width: size.width * 0.4,
             height: size.height * 0.2,
-            margin: EdgeInsets.symmetric(horizontal: 5),
+            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             alignment: Alignment.center,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage("lib/assets/images/${category.image}"),
                 fit: BoxFit.cover,
               ),
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(20),
             ),
           ),
           Text(category.title!),
