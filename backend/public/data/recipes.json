@@ -1,0 +1,29 @@
+[
+  {
+    "title": "Chicken Biryani",
+    "type": "Non-Veg",
+    "prepTime": "1 hour",
+    "image": "chicken-biryani.jpg"
+  },
+
+  {
+    "title": "Green Salad",
+    "type": "Veg",
+    "prepTime": "30 mins",
+    "image": "veg-salad.jpg"
+  },
+
+  {
+    "title": "Ice Cream Sundae",
+    "type": "Dessert",
+    "prepTime": "5 mins",
+    "image": "ice-cream-sundae.jpg"
+  },
+
+  {
+    "title": "Watermelon Mojito",
+    "type": "Drink",
+    "prepTime": "20 mins",
+    "image": "watermelon-mojito.jpg"
+  }
+]

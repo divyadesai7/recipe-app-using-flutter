@@ -1,0 +1,6 @@
+[
+  { "title": "Appetizers", "image": "appetizers.jpg" },
+  { "title": "Main Course", "image": "main-course.jpg" },
+  { "title": "Desserts", "image": "desserts.jpg" },
+  { "title": "Mocktails", "image": "mocktails.jpg" }
+]
