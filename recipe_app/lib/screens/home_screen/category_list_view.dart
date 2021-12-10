@@ -1,32 +1,87 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:http/http.dart' as http;
+import 'package:recipe_app/constants.dart';
 import 'package:recipe_app/models/category.dart';
 import 'package:recipe_app/screens/home_screen/category_card.dart';
 
-class CategoryListView extends StatelessWidget {
-  final List<Category> categories = [
-    new Category(title: 'Appetizers', image: 'appetizers.jpg'),
-    new Category(title: 'Main Course', image: 'main-course.jpg'),
-    new Category(title: 'Desserts', image: 'desserts.jpg'),
-    new Category(title: 'Mocktails', image: 'mocktails.jpg'),
-  ];
+class CategoryListView extends StatefulWidget {
+  @override
+  State<CategoryListView> createState() => _CategoryListViewState();
+}
+
+class _CategoryListViewState extends State<CategoryListView> {
+  late Future<List<Category>> categories;
+
+  Future<List<Category>> fetchCategories() async {
+    final response = await http.get(
+        Uri.parse("https://a53e-106-51-142-133.ngrok.io/api/v1/categories"));
+
+    final responseBody = jsonDecode(response.body);
+
+    if (response.statusCode == 200) {
+      final categories = responseBody['categories'] as List;
+      List<Category> results =
+          categories.map((category) => Category.fromJson(category)).toList();
+      return results;
+    }
+
+    return <Category>[];
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    categories = fetchCategories();
+  }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return Container(
-      height: size.height * 0.25,
-      width: double.infinity,
-      // color: Colors.pink,
-      // padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: categories.length,
-          itemBuilder: (context, index) {
-            return CategoryCard(
-              category: categories[index],
+    return FutureBuilder<List<Category>>(
+        future: categories,
+        builder: (context, snapshot) {
+          if (snapshot.hasData && snapshot.data!.length > 0) {
+            return Container(
+              height: size.height * 0.25,
+              width: double.infinity,
+              // color: Colors.pink,
+              // padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: snapshot.data!.length,
+                  itemBuilder: (context, index) {
+                    return CategoryCard(
+                      category: snapshot.data![index],
+                    );
+                  }),
             );
-          }),
-    );
+          }
+
+          return Container(
+            height: size.height * 0.25,
+            width: double.infinity,
+            color: bgColor,
+            child: SpinKitThreeBounce(size: 30.0, color: primaryColor),
+          );
+        });
+
+    // return Container(
+    //   height: size.height * 0.25,
+    //   width: double.infinity,
+    //   // color: Colors.pink,
+    //   // padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+    //   child: ListView.builder(
+    //       scrollDirection: Axis.horizontal,
+    //       itemCount: categories.length,
+    //       itemBuilder: (context, index) {
+    //         return CategoryCard(
+    //           category: categories[index],
+    //         );
+    //       }),
+    // );
   }
 }
