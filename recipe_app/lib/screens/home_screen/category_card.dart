@@ -29,7 +29,7 @@ class CategoryCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
             ),
           ),
-          Text(category.title!),
+          Text(category.title),
         ],
       ),
     );
