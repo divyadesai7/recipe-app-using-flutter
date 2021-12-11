@@ -30,7 +30,7 @@ class RoundedTextLabel extends StatelessWidget {
           ),
           Text(
             label,
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
           ),
         ],
       ),

@@ -19,8 +19,8 @@ class RoundedFoodLabel extends StatelessWidget {
       child: Text(
         label,
         style: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w800,
+          fontSize: 18,
+          fontWeight: FontWeight.w900,
         ),
       ),
     );
