@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app/constants.dart';
 import 'package:recipe_app/models/category.dart';
 
 class CategoryCard extends StatelessWidget {
@@ -27,9 +28,18 @@ class CategoryCard extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
               borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(color: shadowColor, blurRadius: 2, spreadRadius: 0.5),
+              ],
             ),
           ),
-          Text(category.title),
+          Text(
+            category.title,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
         ],
       ),
     );
