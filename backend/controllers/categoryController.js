@@ -1,4 +1,5 @@
 const Category = require('../models/categoryModel.js');
+const Recipe = require('../models/recipeModel.js');
 
 exports.createCategory = async (req, res) => {
   const newCategory = await Category.create(req.body);
@@ -14,7 +15,12 @@ exports.getCategory = async (req, res) => {
   }
 };
 
-exports.getAllCategories = async (req, res, next) => {
+exports.getAllCategories = async (req, res) => {
   const categories = await Category.find();
   res.status(200).json({ status: 'success', categories });
+};
+
+exports.getAllRecipesByCategory = async (req, res) => {
+  const recipes = await Recipe.find({ category: { _id: req.params.id } });
+  res.status(200).json({ status: 'success', recipes });
 };
