@@ -1,7 +1,7 @@
-const fs = require('fs');
 const express = require('express');
 
 const categoryRouter = require('./routes/categoryRoutes.js');
+const recipeRouter = require('./routes/recipeRoutes.js');
 
 // Create express app
 const app = express();
@@ -11,6 +11,7 @@ app.use(express.json({ limit: '10kb' }));
 
 // Routers
 app.use('/api/v1/categories', categoryRouter);
+app.use('/api/v1/recipes', recipeRouter);
 
 // Unhandled routes
 app.all('*', (req, res) => {
