@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
@@ -42,46 +41,33 @@ class _CategoryListViewState extends State<CategoryListView> {
     Size size = MediaQuery.of(context).size;
 
     return FutureBuilder<List<Category>>(
-        future: categories,
-        builder: (context, snapshot) {
-          if (snapshot.hasData && snapshot.data!.length > 0) {
-            return Container(
-              height: size.height * 0.25,
-              width: double.infinity,
-              // color: Colors.pink,
-              // padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: snapshot.data!.length,
-                  itemBuilder: (context, index) {
-                    return CategoryCard(
-                      category: snapshot.data![index],
-                    );
-                  }),
-            );
-          }
-
+      future: categories,
+      builder: (context, snapshot) {
+        if (snapshot.hasData && snapshot.data!.length > 0) {
           return Container(
             height: size.height * 0.25,
             width: double.infinity,
-            color: bgColor,
-            child: SpinKitThreeBounce(size: 30.0, color: primaryColor),
+            // color: Colors.pink,
+            // padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index) {
+                return CategoryCard(
+                  category: snapshot.data![index],
+                );
+              },
+            ),
           );
-        });
+        }
 
-    // return Container(
-    //   height: size.height * 0.25,
-    //   width: double.infinity,
-    //   // color: Colors.pink,
-    //   // padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-    //   child: ListView.builder(
-    //       scrollDirection: Axis.horizontal,
-    //       itemCount: categories.length,
-    //       itemBuilder: (context, index) {
-    //         return CategoryCard(
-    //           category: categories[index],
-    //         );
-    //       }),
-    // );
+        return Container(
+          height: size.height * 0.25,
+          width: double.infinity,
+          color: bgColor,
+          child: SpinKitThreeBounce(size: 30.0, color: primaryColor),
+        );
+      },
+    );
   }
 }
