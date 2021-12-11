@@ -9,6 +9,22 @@ class RecipeCard extends StatelessWidget {
 
   const RecipeCard({required this.recipe});
 
+  String convertPrepTime(int prepTime) {
+    String result;
+    if (recipe.prepTime < 60) {
+      result = "${recipe.prepTime} min";
+    } else {
+      int hours = recipe.prepTime ~/ 60;
+      int minutes = recipe.prepTime % 60;
+      result = "${hours} hr";
+
+      if (minutes > 0) {
+        result += " ${minutes} min";
+      }
+    }
+    return result;
+  }
+
   @override
   Widget build(BuildContext context) {
     IconData typeIcon = Icons.restaurant_menu;
@@ -41,7 +57,6 @@ class RecipeCard extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       decoration: BoxDecoration(
-        // color: Colors.blue,
         image: DecorationImage(
           image: AssetImage("lib/assets/images/${recipe.image}"),
           fit: BoxFit.cover,
@@ -55,18 +70,18 @@ class RecipeCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               RoundedTextLabel(
-                label: recipe.type!,
+                label: recipe.type,
                 icon: typeIcon,
                 iconColor: typeIconColor,
               ),
               RoundedTextLabel(
-                label: recipe.prepTime!,
+                label: convertPrepTime(recipe.prepTime),
                 icon: Icons.timer,
                 iconColor: primaryColor,
               ),
             ],
           ),
-          RoundedFoodLabel(label: recipe.title!),
+          RoundedFoodLabel(label: recipe.title),
         ],
       ),
     );

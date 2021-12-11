@@ -1,47 +1,62 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:http/http.dart' as http;
+import 'package:recipe_app/constants.dart';
 import 'package:recipe_app/models/recipe.dart';
 import 'package:recipe_app/screens/home_screen/recipe_card.dart';
 
-class RecipeListView extends StatelessWidget {
-  final List<Recipe> recipes = [
-    new Recipe(
-      title: "Chicken Biryani",
-      type: "Non-Veg",
-      prepTime: "1 hour",
-      image: "chicken-biryani.jpg",
-    ),
-    new Recipe(
-      title: "Green Salad",
-      type: "Veg",
-      prepTime: "30 mins",
-      image: "veg-salad.jpg",
-    ),
-    new Recipe(
-      title: "Ice Cream Sundae",
-      type: "Dessert",
-      prepTime: "5 mins",
-      image: "ice-cream-sundae.jpg",
-    ),
-    new Recipe(
-      title: "Watermelon Mojito",
-      type: "Drink",
-      prepTime: "20 mins",
-      image: "watermelon-mojito.jpg",
-    ),
-  ];
+class RecipeListView extends StatefulWidget {
+  @override
+  State<RecipeListView> createState() => _RecipeListViewState();
+}
+
+class _RecipeListViewState extends State<RecipeListView> {
+  late Future<List<Recipe>> recipes;
+
+  Future<List<Recipe>> fetchRecipes() async {
+    const String url = String.fromEnvironment('my_backend_server');
+    final response = await http.get(Uri.parse("${url}/api/v1/recipes"));
+
+    final responseBody = jsonDecode(response.body);
+
+    if (response.statusCode == 200) {
+      final recipes = responseBody['recipes'] as List;
+      List<Recipe> results =
+          recipes.map((recipe) => Recipe.fromJson(recipe)).toList();
+      return results;
+    }
+
+    return <Recipe>[];
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    recipes = fetchRecipes();
+  }
 
   @override
   Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
+    return FutureBuilder<List<Recipe>>(
+      future: recipes,
+      builder: (context, snapshot) {
+        if (snapshot.hasData && snapshot.data!.length > 0) {
+          return Expanded(
+            child: ListView.builder(
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index) {
+                return RecipeCard(recipe: snapshot.data![index]);
+              },
+            ),
+          );
+        }
 
-    return Expanded(
-      child: ListView.builder(
-          // physics: NeverScrollableScrollPhysics(),
-          // shrinkWrap: true,
-          itemCount: recipes.length,
-          itemBuilder: (context, index) {
-            return RecipeCard(recipe: recipes[index]);
-          }),
+        return Container(
+          color: bgColor,
+          child: SpinKitRotatingCircle(size: 50.0, color: primaryColor),
+        );
+      },
     );
   }
 }
