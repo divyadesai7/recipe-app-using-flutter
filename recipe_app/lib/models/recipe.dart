@@ -1,13 +1,25 @@
 class Recipe {
-  String? title;
-  String? type;
-  String? prepTime;
-  String? image;
+  String id;
+  String title;
+  String type;
+  int prepTime;
+  String image;
 
   Recipe({
-    this.title,
-    this.type,
-    this.prepTime,
-    this.image,
+    required this.id,
+    required this.title,
+    required this.type,
+    required this.prepTime,
+    required this.image,
   });
+
+  factory Recipe.fromJson(dynamic json) {
+    return Recipe(
+      id: json['_id'],
+      title: json['title'],
+      type: json['type'],
+      prepTime: json['prepTime'],
+      image: json['image'],
+    );
+  }
 }
