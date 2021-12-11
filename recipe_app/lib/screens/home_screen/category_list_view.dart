@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
 import 'package:recipe_app/constants.dart';
@@ -15,8 +16,8 @@ class _CategoryListViewState extends State<CategoryListView> {
   late Future<List<Category>> categories;
 
   Future<List<Category>> fetchCategories() async {
-    const String url = String.fromEnvironment('my_backend_server');
-    final response = await http.get(Uri.parse("${url}/api/v1/categories"));
+    final response = await http
+        .get(Uri.parse("${dotenv.env['BACKEND_SERVER']}/api/v1/categories"));
 
     final responseBody = jsonDecode(response.body);
 
@@ -47,8 +48,6 @@ class _CategoryListViewState extends State<CategoryListView> {
           return Container(
             height: size.height * 0.25,
             width: double.infinity,
-            // color: Colors.pink,
-            // padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: snapshot.data!.length,

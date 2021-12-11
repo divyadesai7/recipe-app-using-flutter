@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
 import 'package:recipe_app/constants.dart';
@@ -15,8 +16,8 @@ class _RecipeListViewState extends State<RecipeListView> {
   late Future<List<Recipe>> recipes;
 
   Future<List<Recipe>> fetchRecipes() async {
-    const String url = String.fromEnvironment('my_backend_server');
-    final response = await http.get(Uri.parse("${url}/api/v1/recipes"));
+    final response = await http
+        .get(Uri.parse("${dotenv.env['BACKEND_SERVER']}/api/v1/recipes"));
 
     final responseBody = jsonDecode(response.body);
 
