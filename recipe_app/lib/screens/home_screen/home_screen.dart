@@ -9,14 +9,21 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: bgColor,
         appBar: AppBar(
+          toolbarHeight: 60,
           backgroundColor: primaryColor,
           foregroundColor: primaryLightColor,
-          title: Text("Chef's Special"),
+          title: Text(
+            "Chef's Special",
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          ),
           centerTitle: false,
           actions: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.settings)),
+            IconButton(onPressed: () {}, icon: Icon(Icons.settings, size: 30)),
           ],
-          leading: Icon(Icons.menu),
+          leading: IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.menu, size: 35),
+          ),
         ),
         body: HomeScreenBody(),
         bottomNavigationBar: BottomNavigationBar(

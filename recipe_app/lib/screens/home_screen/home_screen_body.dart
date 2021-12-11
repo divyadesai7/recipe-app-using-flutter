@@ -6,10 +6,7 @@ import 'package:recipe_app/screens/home_screen/recipe_list_view.dart';
 class HomeScreenBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
     return Column(
-      // mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -18,20 +15,22 @@ class HomeScreenBody extends StatelessWidget {
           child: Text(
             "Categories",
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 28,
               color: primaryDarkColor,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),
         CategoryListView(),
-        Divider(color: primaryDarkColor, thickness: 1.0),
+        SizedBox(height: 20),
         Container(
           margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
           child: Text(
             "Recipes",
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 28,
               color: primaryDarkColor,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),
