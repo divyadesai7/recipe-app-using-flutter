@@ -20,23 +20,41 @@ class WelcomeScreen extends StatelessWidget {
               SizedBox(height: size.height * 0.1),
               Text(
                 "WELCOME TO CHEF'S SPECIAL",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 48,
+                  fontWeight: FontWeight.bold,
+                  color: primaryColor,
+                ),
               ),
               Image.asset(
                 "lib/assets/icons/welcome.png",
                 height: size.height * 0.45,
               ),
               RoundedButton(
-                buttonLabel: "LOGIN",
+                child: Text(
+                  "LOGIN TO CONTINUE",
+                  style: TextStyle(
+                    color: primaryLightColor,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
                 onPressed: () {
-                  print('Clicked on log in..');
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => LoginScreen()));
                 },
                 backgroundColor: primaryColor,
-                labelColor: primaryLightColor,
               ),
-              // Text()
+              Text(
+                "Don't have an account? Create one.",
+                style: TextStyle(
+                  color: primaryColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
               SizedBox(height: size.height * 0.1),
             ],
           ),
