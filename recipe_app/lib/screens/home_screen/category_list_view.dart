@@ -16,8 +16,8 @@ class _CategoryListViewState extends State<CategoryListView> {
   late Future<List<Category>> categories;
 
   Future<List<Category>> fetchCategories() async {
-    final response = await http.get(
-        Uri.parse("https://a53e-106-51-142-133.ngrok.io/api/v1/categories"));
+    const String url = String.fromEnvironment('my_backend_server');
+    final response = await http.get(Uri.parse("${url}/api/v1/categories"));
 
     final responseBody = jsonDecode(response.body);
 
