@@ -4,6 +4,7 @@ class Recipe {
   String type;
   int prepTime;
   String image;
+  String url;
 
   Recipe({
     required this.id,
@@ -11,6 +12,7 @@ class Recipe {
     required this.type,
     required this.prepTime,
     required this.image,
+    required this.url,
   });
 
   factory Recipe.fromJson(dynamic json) {
@@ -20,6 +22,7 @@ class Recipe {
       type: json['type'],
       prepTime: json['prepTime'],
       image: json['image'],
+      url: json['url'],
     );
   }
 }

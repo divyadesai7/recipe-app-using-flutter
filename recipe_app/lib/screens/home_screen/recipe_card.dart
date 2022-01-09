@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app/components/rounded_button.dart';
 import 'package:recipe_app/components/rounded_food_label.dart';
 import 'package:recipe_app/components/rounded_text_label.dart';
 import 'package:recipe_app/constants.dart';
 import 'package:recipe_app/models/recipe.dart';
+import 'package:url_launcher/link.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class RecipeCard extends StatelessWidget {
   final Recipe recipe;
@@ -23,6 +26,12 @@ class RecipeCard extends StatelessWidget {
       }
     }
     return result;
+  }
+
+  void _launchInBrowser(String url) async {
+    if (!await launch(url)) {
+      throw "Could not launch $url";
+    }
   }
 
   @override
@@ -84,7 +93,20 @@ class RecipeCard extends StatelessWidget {
               ),
             ],
           ),
-          RoundedFoodLabel(label: recipe.title),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              RoundedFoodLabel(label: recipe.title),
+              ElevatedButton(
+                onPressed: () => _launchInBrowser(recipe.url),
+                child: Icon(Icons.arrow_forward, color: primaryColor),
+                style: ElevatedButton.styleFrom(
+                  primary: primaryLightColor,
+                  shape: CircleBorder(),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );

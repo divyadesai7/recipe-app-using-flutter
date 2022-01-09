@@ -17,7 +17,8 @@ const recipeSchema = new mongoose.Schema({
     default: 'Food',
   },
   prepTime: Number,
-  image: String,
+  image: { type: String, defaul: 'default.jpg' },
+  url: { type: String, required: [true, 'Recipe must have a url.'] },
   category: {
     type: mongoose.Schema.ObjectId,
     ref: 'Category',
